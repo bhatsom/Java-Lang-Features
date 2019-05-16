@@ -3,8 +3,10 @@ package com.somnath.apps.algo;
 public class Factorial {
 
 	public static void main(String[] args) {
+
 		System.out.println("Factorial recursive: " + factorialRecursive(5));
-		System.out.println("Factorial recursive: " + factorialIterative(5));
+		System.out.println("Factorial iterative: " + factorialIterative(5));
+
 	}
 
 	public static int factorialRecursive(int n)	{
