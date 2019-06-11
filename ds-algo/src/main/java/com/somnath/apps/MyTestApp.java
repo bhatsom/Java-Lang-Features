@@ -1,6 +1,6 @@
 package com.somnath.apps;
 
-import com.somnath.apps.ds.BinaryTree;
+import com.somnath.apps.ds.btree.BinarySearchTree;
 
 public class MyTestApp {
 
@@ -13,7 +13,7 @@ public class MyTestApp {
 		System.out.println("data length/capacity:" + data.length);
 		System.out.println("data:" + data.toString()); // hashCode pointing to memory address
 
-		BinaryTree bst = new BinaryTree();
+		BinarySearchTree bst = new BinarySearchTree();
 
 	}
 }

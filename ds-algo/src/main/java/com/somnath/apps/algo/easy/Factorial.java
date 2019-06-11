@@ -1,4 +1,4 @@
-package com.somnath.apps.algo;
+package com.somnath.apps.algo.easy;
 
 public class Factorial {
 

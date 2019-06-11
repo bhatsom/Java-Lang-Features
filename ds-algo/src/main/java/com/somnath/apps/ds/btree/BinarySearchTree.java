@@ -1,6 +1,6 @@
-package com.somnath.apps.ds;
+package com.somnath.apps.ds.btree;
 
-public class BinaryTree {
+public class BinarySearchTree {
 
     private class Node {
         int key;
@@ -23,7 +23,7 @@ public class BinaryTree {
 
     private Node root;
 
-    public BinaryTree() {
+    public BinarySearchTree() {
         root = null;
     }
 
