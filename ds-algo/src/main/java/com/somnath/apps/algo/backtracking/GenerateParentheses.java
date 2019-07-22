@@ -24,6 +24,38 @@ class GenerateParentheses {
     }
 
     public static void main(String[] args) {
+
+        /*
+            n = 3
+            1: "" 0 0 -> ( 1 0 -> close = open
+            2: (  1 0 ->
+                        a. open < n -> (( 2 0
+                        b. close < open -> () 1 1
+                            a:
+                                a1 open < n -> ((( 3 0
+                                a2 close < open -> (() 2 1
+                            b:
+                                b1 open < n -> ()( 2 1
+                                b2 close !< open -> END
+                                    a1:
+                                        - open !< n -> END
+                                        - close < open -> ((() 3 1
+                                    a2:
+                                        - open < n -> (()( 3 1
+                                        - close < open -> (()) 2 2
+                                    b1:
+                                        -
+                                        -
+                                    b2:
+                                        -
+                                        -
+
+         */
+
+        /*
+         Complexity: 1 + 2 + 4 + ...N = 2^N -1 = O(2^N)
+          */
+
         System.out.println("Combinations:" + generateParenthesis(3));
     }
 
