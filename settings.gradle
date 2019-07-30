@@ -1,5 +1,4 @@
 rootProject.name = 'core'
 
-include 'java-features'
+include 'java-api'
 include 'scala'
-include 'ds-algo'
