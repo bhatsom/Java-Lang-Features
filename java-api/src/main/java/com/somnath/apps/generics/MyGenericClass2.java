@@ -20,7 +20,7 @@ public class MyGenericClass2 {
 
     private static void copyShapesToCollection2(Object[] source, List<?> target) {
         for (Object element : source){
-            //target.add(element);
+            //target.add(element); // doesn't compile
         }
 
     }

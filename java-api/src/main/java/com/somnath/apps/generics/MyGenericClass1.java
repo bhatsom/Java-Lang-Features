@@ -51,7 +51,7 @@ public class MyGenericClass1 {
         List<Shape> shapeListToBeDrawn3 = new ArrayList<>();
         shapeListToBeDrawn3.add(circle); //now its allowed
         shapeListToBeDrawn3.add(rectangle); //now ist allowed
-        shapeListToBeDrawn3.add(new Shape() { //sing anonymous inner class
+        shapeListToBeDrawn3.add(new Shape() { //using anonymous inner class
             @Override
             public void draw() {
                 System.out.println("draw circle");
@@ -59,8 +59,6 @@ public class MyGenericClass1 {
         });
         shapeListToBeDrawn3.add(() -> System.out.println("draw circle")); // using lambda
 
-        drawSingleShape(circle);
-        drawSingleShape(rectangle);
         drawMultipleShape(shapeListToBeDrawn3);
 
         Map<String, Circle> circleMap = new HashMap<>();
@@ -69,6 +67,10 @@ public class MyGenericClass1 {
         circleMap.put("circle2", circle2);
 
         printShapeRegistry(circleMap);
+
+        // below statements are not allowed
+        //List<Shape> shapeList4 = new ArrayList<Circle>();
+        //List<Circle> shapeList5 = new ArrayList<Shape>();
     }
 
     private static void drawSingleShape(Shape shape){
@@ -107,6 +109,7 @@ public class MyGenericClass1 {
         //registryMap.putAll(circleMap);
 
     }
+
     private static void printShapeRegistry(Map<String, ? extends Shape> registryMap){
         //print all from registryMap
 

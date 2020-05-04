@@ -15,7 +15,7 @@ public class FileIO {
 	public static void main(String[] args) {
 
 		LOGGER.info("Using File Writer and Reader...");
-		String filePath = "/users/somnath/F/Practice/test-io-1.txt";
+		String filePath = "./sample/test-io-1.txt";
 
 		try (
 				PrintWriter writer = new PrintWriter(new FileWriter(filePath));
