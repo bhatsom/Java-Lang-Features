@@ -15,65 +15,72 @@ import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-/**
- *
- * @author pkaria
- */
 public class HttpClientExample {
-    
-    public static void main(String[] args) throws Exception {
-        httpGetRequest();
-        httpPostRequest();
-        asynchronousRequest();
-        asynchronousMultipleRequests();
-    }
 
-    public static void httpGetRequest() throws URISyntaxException, IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        URI httpURI = new URI("http://jsonplaceholder.typicode.com/posts/1");
-        HttpRequest request = HttpRequest.newBuilder(httpURI).GET()
-          .headers("Accept-Enconding", "gzip, deflate").build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String responseBody = response.body();
-        int responseStatusCode = response.statusCode();
-        System.out.println(responseBody);
-    }
+	public static void main(String[] args) throws Exception {
+		httpGetRequest();
+		httpPostRequest();
+		asynchronousRequest();
+		asynchronousMultipleRequests();
+	}
 
-    public static void httpPostRequest() throws URISyntaxException, IOException, InterruptedException {
-        HttpClient client = HttpClient
-                .newBuilder()
-                .build();
-        HttpRequest request = HttpRequest
-                .newBuilder(new URI("http://jsonplaceholder.typicode.com/posts"))
-                .POST(BodyPublishers.ofString("Sample Post Request"))
-                .build();
-        HttpResponse<String> response
-                = client.send(request, HttpResponse.BodyHandlers.ofString());
-        String responseBody = response.body();
-        System.out.println(responseBody);
-    }
+	public static void httpGetRequest() throws URISyntaxException, IOException, InterruptedException {
+		System.out.println("================Executing httpGetRequest()================");
+		HttpClient client = HttpClient.newHttpClient();
+		URI httpURI = new URI("http://jsonplaceholder.typicode.com/posts/1");
+		HttpRequest request = HttpRequest.newBuilder(httpURI).GET()
+				.headers("Accept-Enconding", "gzip, deflate").build();
+		HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+		String responseBody = response.body();
+		int responseStatusCode = response.statusCode();
+		System.out.println("Status Code: " + responseStatusCode + " ResponseBody: " + responseBody);
+	}
 
-    public static void asynchronousRequest() throws URISyntaxException {
-        HttpClient client = HttpClient.newHttpClient();
-        URI httpURI = new URI("http://jsonplaceholder.typicode.com/posts/1");
-        HttpRequest request = HttpRequest.newBuilder(httpURI).GET().build();
-        CompletableFuture<HttpResponse<String>> futureResponse = client.sendAsync(request,
-                HttpResponse.BodyHandlers.ofString());
-    }
+	public static void httpPostRequest() throws URISyntaxException, IOException, InterruptedException {
+		System.out.println("================Executing httpPostRequest()================");
+		HttpClient client = HttpClient
+				.newBuilder()
+				.build();
+		HttpRequest request = HttpRequest
+				.newBuilder(new URI("http://jsonplaceholder.typicode.com/posts"))
+				.POST(BodyPublishers.ofString("Sample Post Request"))
+				.build();
+		HttpResponse<String> response
+				= client.send(request, HttpResponse.BodyHandlers.ofString());
+		String responseBody = response.body();
+		int responseStatusCode = response.statusCode();
+		System.out.println("Status Code: " + responseStatusCode + " ResponseBody: " + responseBody);
+	}
 
-    public static void asynchronousMultipleRequests() throws URISyntaxException {
-        List<URI> targets = Arrays.asList(new URI("http://jsonplaceholder.typicode.com/posts/1"), new URI("http://jsonplaceholder.typicode.com/posts/2"));
-        HttpClient client = HttpClient.newHttpClient();
-        List<CompletableFuture<File>> futures = targets
-                .stream()
-                .map(target -> client
-                .sendAsync(
-                        HttpRequest.newBuilder(target)
-                                .GET()
-                                .build(),
-                        BodyHandlers.ofFile(Paths.get("base", target.getPath())))
-                .thenApply(response -> response.body())
-                .thenApply(path -> path.toFile()))
-                .collect(Collectors.toList());
-    }
+	public static void asynchronousRequest() throws Exception {
+		System.out.println("================Executing asynchronousRequest()================");
+		HttpClient client = HttpClient.newHttpClient();
+		URI httpURI = new URI("http://jsonplaceholder.typicode.com/posts/1");
+		HttpRequest request = HttpRequest.newBuilder(httpURI).GET().build();
+		CompletableFuture<HttpResponse<String>> futureResponse = client.sendAsync(request,
+				HttpResponse.BodyHandlers.ofString());
+		HttpResponse<String> response = futureResponse.get();
+		System.out.println("Status Code: " + response.statusCode() + " ResponseBody: " + response.body());
+	}
+
+	public static void asynchronousMultipleRequests() throws URISyntaxException {
+		System.out.println("================Executing asynchronousMultipleRequests()================");
+		List<URI> targets = Arrays.asList(
+				new URI("http://jsonplaceholder.typicode.com/posts/1"),
+				new URI("http://jsonplaceholder.typicode.com/posts/2")
+		);
+		HttpClient client = HttpClient.newHttpClient();
+		List<CompletableFuture<File>> futures = targets
+				.stream()
+				.map(target -> client
+						.sendAsync(
+								HttpRequest.newBuilder(target)
+										.GET()
+										.build(),
+								BodyHandlers.ofFile(Paths.get("base", target.getPath())))
+						.thenApply(response -> response.body())
+						.thenApply(path -> path.toFile()))
+				.collect(Collectors.toList());
+	}
+
 }

@@ -4,6 +4,9 @@
 /target
 /src/main/webapp/WEB-INF/classes
 */META-INF/*
+.gradle
+build
+out
 
 # Packaged files #
 *.jar
@@ -11,7 +14,7 @@
 *.ear
 
 # Generated files
-/sample/*
+/java-api/src/main/resources/sample/*
 backup-pom.xml
 /bin/
 /temp
