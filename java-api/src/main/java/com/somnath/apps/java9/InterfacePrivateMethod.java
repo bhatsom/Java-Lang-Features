@@ -30,7 +30,7 @@ public class InterfacePrivateMethod {
 			return "INSTANCE PRIVATE";
 		}
 
-		public default void checkDefault() {
+		default void checkDefault() { // default methods are public anyway
 			String result = staticPrivate();
 			if (result.equalsIgnoreCase("static private")) System.out.println("Static private method works!");
 

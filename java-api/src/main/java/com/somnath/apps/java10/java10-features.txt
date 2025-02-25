@@ -1,0 +1,43 @@
+https://www.baeldung.com/java-10-overview
+https://www.baeldung.com/java-10-performance-improvements
+
+API/Developer Enhancements:
+---------------------------
+1. Local Variable Type Inference
+2. Unmodifiable Collections
+    - copyOf()
+    - toUnmodifiable*()
+3. Optional*.orElseThrow()
+
+JVM Level Improvements and Enhancements:
+----------------------------------------
+1. Performance Improvements
+  - https://www.baeldung.com/java-10-performance-improvements
+  - Parallel Full GC for G1
+  - Application Class-Data Sharing
+  - Experimental Java-Based JIT Compiler
+
+2. Container Awareness:
+    JVMs are now aware of being run in a Docker container and will extract container-specific
+configuration instead of querying the operating system itself – it applies to data like the
+number of CPUs and total memory that have been allocated to the container.
+
+3. Root Certificates
+    The cacerts keystore, which was initially empty so far, is intended to contain a set of root
+certificates that can be used to establish trust in the certificate chains used by various
+security protocols. As a result, critical security components such as TLS didn’t work by
+default under OpenJDK builds. With Java 10, Oracle has open-sourced the root certificates in
+Oracle’s Java SE Root CA program in order to make OpenJDK builds more attractive to developers
+and to reduce the differences between those builds and Oracle JDK builds.
+
+Deprecations and Removals:
+--------------------------
+1. Command Line Options and Tools:
+    Tool javah has been removed from Java 10 which generated C headers and source files which
+    were required to implement native methods – now, javac -h can be used instead.
+
+    Removed java -Xprofoption. The option was used to profile the running program and send
+    profiling data to standard output. The user should now use jmap tool instead.
+
+Time-Based Release Versioning
+-----------------------------

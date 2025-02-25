@@ -1,0 +1,40 @@
+https://www.baeldung.com/new-java-9
+
+API/Developer Enhancements:
+---------------------------
+1. Java Module System
+2. New HTTP Client:
+    - located under java.net.http package, supports both HTTP/2 protocol and WebSocket handshake, with performance
+    comparable with Apache HttpClient, Netty and Jetty.
+3. Improved Process API:
+    - improved for controlling and managing operating-system processes.
+4. Try-With-Resources
+5. Diamond Operator Extension (in conjunction with anonymous inner classes)
+6. Interface Private Method
+7. New API
+    - Immutable Set
+    - Optional to Stream
+8. Publish-Subscribe Framework
+   - class java.util.concurrent.Flow provides interfaces that support Reactive Streams using publish-subscribe framework.
+
+JVM Level Improvements and Enhancements:
+----------------------------------------
+1. JShell Command Line Tool
+  - JShell is read–eval–print loop – REPL for short.
+  - Simply put, it’s an interactive tool to evaluate declarations, statements, and expressions.
+
+2. JCMD Sub-Commands
+  - new subcommands in jcmd command line utility
+  - get a list of all classes loaded in the JVM and their inheritance structure
+  - jcmd jvm_PID VM.class_hierarchy -i -s java.net.Socket
+
+3. Unified JVM Logging
+   - Common logging system for all JVM components. Provides the infrastructure, but does not add the actual
+   logging calls from the JVM components. Also does not add logging to Java code in the JDK.
+   - The logging framework defines a set of tags – for ex: ,gc, compiler, threads, etc. We can use the command line
+   parameter -Xlog to turn on logging during startup.
+   - Let’s log messages tagged with ‘gc’ using ‘debug’ level to a file ‘gc.txt’ with no decorations:
+     java -Xlog:gc=debug:file=gc.txt:none ...
+   -  -Xlog:help will output possible options and examples. Logging configuration can be modified runtime using jcmd
+   command. Lets set GC logs to info and redirect them to a file – gc_logs: jcmd 9615 VM.log output=gc_logs what=gc
+

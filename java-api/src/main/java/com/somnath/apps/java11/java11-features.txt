@@ -1,0 +1,30 @@
+https://www.baeldung.com/java-11-new-features
+
+API/Developer Enhancements:
+---------------------------
+1. A:
+    - aaa
+2. B:
+    - aaa
+3. C
+4. D
+5. E
+6. F
+    - a
+    - a
+7. G
+   - aaa
+
+JVM Level Improvements and Enhancements:
+----------------------------------------
+1. ABC
+  - aa
+  - aa
+
+2. ABC
+  - aa
+  - aa
+
+3. ABC
+  - aa
+  - aa
